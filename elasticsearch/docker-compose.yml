@@ -1,0 +1,29 @@
+elasticsearch:
+  image: elasticsearch
+  container_name: elasticsearch
+  hostname: elasticsearch
+  volumes:
+    - ./VOL/usr/share/elasticsearch/data:/usr/share/elasticsearch/data
+    - ./VOL/usr/share/elasticsearch/logs:/usr/share/elasticsearch/logs
+  ports:
+    - 9200:9200
+# fluentd:
+#   build: fluentd
+#   ports:
+#     - 24284:24284
+#   volumes:
+#     - ./log:/var/log/hoge
+#   links:
+#     - elasticsearch
+kibana:
+  image: kibana
+  container_name: kibana
+  hostname: kibana
+  ports:
+    # - 9204:5601
+    - 5601:5601
+  environment:
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
+  links:
+    - elasticsearch
+  

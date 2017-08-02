@@ -1,0 +1,5 @@
+swift:
+  image: swift
+  container_name: swift
+  hostname: swift
+          
